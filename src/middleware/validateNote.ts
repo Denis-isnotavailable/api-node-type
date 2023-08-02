@@ -1,4 +1,4 @@
-import yup, { AnySchema, string, boolean, date } from 'yup';
+import yup, { AnySchema, string, boolean } from 'yup';
 import express from 'express';
 
 const schema: AnySchema = yup.object({    
@@ -12,11 +12,9 @@ const schema: AnySchema = yup.object({
 });
 
 export const validateNote = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    console.log(req.body);
-    const {id, name, createdAt, category, content, dates, archived} = req.body;
     try {
         await schema.validate({
-            id, name, createdAt, category, content, dates, archived
+            ...req.body
         });
 
         next();
