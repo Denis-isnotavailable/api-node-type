@@ -81,7 +81,6 @@ export const deleteNoteService = async (contactId: string) => {
 
     notes.splice(i, 1);
     fs.writeFileSync(path, JSON.stringify(notes), "utf-8");
-    console.log(notes);
     
     return notes;
 }

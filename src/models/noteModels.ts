@@ -4,7 +4,7 @@ import { getAllNotesService, getStatsService, getNoteByIdService, addNoteService
 
 
 // GET ALL
-export const getNotesList = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export const getNotesList = async (req: express.Request, res: express.Response) => {
     try {
         const notes = await getAllNotesService();
     
@@ -16,7 +16,7 @@ export const getNotesList = async (req: express.Request, res: express.Response, 
 };
 
 // GET STATS
-export const getStatsList = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export const getStatsList = async (req: express.Request, res: express.Response) => {
     try {
         const stats = await getStatsService();
     
@@ -28,7 +28,7 @@ export const getStatsList = async (req: express.Request, res: express.Response, 
 };
 
 // GET BY ID
-export const getNoteById = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export const getNoteById = async (req: express.Request, res: express.Response) => {
     try {
         const { id } = req.params;
         const note = await getNoteByIdService(id);
@@ -46,9 +46,9 @@ export const getNoteById = async (req: express.Request, res: express.Response, n
 };
 
 // ADD NOTE
-export const addNote = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export const addNote = async (req: express.Request, res: express.Response) => {
     try {
-        const note: Note = req.body; // TODO VALIDATION
+        const note: Note = req.body; 
         const data = await addNoteService(note);
     
         res.status(201).json({status: 'success', data });
@@ -59,7 +59,7 @@ export const addNote = async (req: express.Request, res: express.Response, next:
 };
 
 // DELETE NOTE
-export const removeNote = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export const removeNote = async (req: express.Request, res: express.Response) => {
     try {
         const { id } = req.params;
         const notes = await deleteNoteService(id);
@@ -77,10 +77,10 @@ export const removeNote = async (req: express.Request, res: express.Response, ne
 };
 
 // EDIT NOTE
-export const editNote = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export const editNote = async (req: express.Request, res: express.Response) => {
     try {
         const { id } = req.params;
-        const note: Note = req.body; // TODO VALIDATION
+        const note: Note = req.body;
         
         const notes = await editNoteService(id, note);    
 

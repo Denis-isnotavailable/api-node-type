@@ -12,7 +12,7 @@ app.use((req: express.Request, res: express.Response): void => {
   res.status(404).json({ message: 'Not found' })
 });
 
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction): void => {
+app.use((err: any, req: express.Request, res: express.Response): void => {
   res.status(500).json({ message: err.message })
 });
 
